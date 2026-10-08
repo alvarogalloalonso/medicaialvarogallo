@@ -1,0 +1,5 @@
+[
+  {"id":"negation","conversation":[{"role":"user","content":"Caso ficticio: tengo tos, pero no tengo fiebre."}],"expected":{"cough":"present","high_fever":"absent","mild_fever":"absent","chest_pain":"unknown"}},
+  {"id":"correction","conversation":[{"role":"user","content":"Caso ficticio: dije dolor de cabeza, pero me equivoqué: no tengo dolor de cabeza, tengo picor."}],"expected":{"headache":"absent","itching":"present","cough":"unknown"}},
+  {"id":"unasked","conversation":[{"role":"user","content":"Caso ficticio: tengo náuseas desde ayer."}],"expected":{"nausea":"present","vomiting":"unknown","diarrhoea":"unknown"}}
+]
