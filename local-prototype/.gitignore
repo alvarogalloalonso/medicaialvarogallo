@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.log
+backend/models/*.joblib
+backend/data/*.csv
+backend/data_train/*.csv
+
