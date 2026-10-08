@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medic AI - Panel del Doctor</title>
+    <!-- Configuración SEO y Meta -->
+    <meta name="description" content="Panel de control para profesionales médicos para revisar informes de triaje generados por inteligencia artificial.">
+    <!-- Iconos y Fuentes -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/doctor.css">
+</head>
+<body>
+    <p style="padding:12px;text-align:center">Prototipo educativo. Solo casos ficticios; sin validación clínica. Los casos caducan tras una hora.</p>
+    <div class="dashboard-container">
+        <header class="header">
+            <div class="logo">
+                <i class="fa-solid fa-stethoscope logo-icon"></i>
+                Medic AI | Panel Médico
+            </div>
+            <button id="refreshBtn" class="btn btn-outline">
+                <i class="fa-solid fa-rotate"></i> Actualizar
+            </button>
+        </header>
+
+        <main class="main-content">
+            <!-- Sidebar: Lista de Informes -->
+            <aside class="sidebar glass-panel" id="reportList">
+                <div style="padding: 20px; text-align: center; color: var(--text-muted);">
+                    Cargando informes...
+                </div>
+            </aside>
+
+            <!-- Área Principal: Detalle del Informe -->
+            <section class="detail-area glass-panel">
+                <div id="emptyState" class="empty-state">
+                    <i class="fa-solid fa-file-medical"></i>
+                    <h2>Selecciona un informe para ver los detalles</h2>
+                    <p>Los pacientes que completen el triaje aparecerán en la lista lateral.</p>
+                </div>
+                
+                <div id="reportContent" class="report-content">
+                    <div class="detail-header">
+                        <div>
+                            <h2 class="detail-title" id="reportTitle">Informe Clínico</h2>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">
+                                ID: <span id="reportIdDisplay">---</span> | Generado: <span id="reportDateDisplay">---</span>
+                            </div>
+                        </div>
+                        <div class="urgency-meter">
+                            <span id="urgencyLabel" style="font-weight: 600;">Urgencia: --/100</span>
+                            <div class="urgency-bar-bg">
+                                <div id="urgencyBar" class="urgency-bar-fill" style="width: 0%; background: var(--primary-teal);"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-body">
+                        <!-- Resumen Demográfico -->
+                        <div class="section">
+                            <h3 class="section-title"><i class="fa-solid fa-user"></i> Datos del Paciente</h3>
+                            <p><strong>Edad:</strong> <span id="patAge">---</span></p>
+                            <p><strong>Sexo:</strong> <span id="patSex">---</span></p>
+                            <p><strong>Síntoma Principal:</strong> <span id="patSymptom">---</span></p>
+                        </div>
+                        
+                        <!-- Especialidad Asignada -->
+                        <div class="section">
+                            <h3 class="section-title"><i class="fa-solid fa-sitemap"></i> Especialidad Sugerida</h3>
+                            <p><strong>Rama:</strong> <span id="specName" style="text-transform: capitalize;">---</span></p>
+                            <p><strong>Confianza:</strong> <span id="specConf">---</span></p>
+                            <div id="alarmSignalsContainer" style="margin-top: 12px; display: none;">
+                                <p style="color: var(--danger); font-weight: bold;"><i class="fa-solid fa-triangle-exclamation"></i> Señales de Alarma:</p>
+                                <ul id="alarmList" style="padding-left: 20px; color: var(--danger); font-size: 0.9rem;"></ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Hipótesis de ML -->
+                        <div class="section full-width">
+                            <h3 class="section-title"><i class="fa-solid fa-brain"></i> Diagnósticos Diferenciales (Motor ML)</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">
+                                Haz clic en una enfermedad para ver la explicación del modelo (SHAP values).
+                            </p>
+                            <div id="hypothesesGrid" style="display: flex; flex-direction: column; gap: 10px;">
+                                <!-- Se inyectan las hipótesis aquí -->
+                            </div>
+                        </div>
+                        
+                        <!-- Informe Clínico (Texto Completo) -->
+                        <div class="section full-width">
+                            <h3 class="section-title"><i class="fa-solid fa-file-lines"></i> Informe Narrativo Generado por IA</h3>
+                            <div id="narrativeReport" class="markdown-content">
+                                <!-- El contenido markdown se inyectará aquí -->
+                            </div>
+                        </div>
+                        
+                        <!-- Datos Extraídos Estructurados (Bayes Features) -->
+                        <div class="section full-width">
+                            <h3 class="section-title"><i class="fa-solid fa-tags"></i> Síntomas Extraídos (Estructurados)</h3>
+                            <div id="featureGrid" class="feature-grid">
+                                <!-- Tags de síntomas activos -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Usar Marked para renderizar el informe Markdown a HTML -->
+    <script src="/js/utils.js"></script>
+    <script src="/js/doctor.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medic AI - Triaje Inteligente</title>
+    <!-- Configuración SEO y Meta -->
+    <meta name="description" content="Asistente de triaje médico impulsado por inteligencia artificial para una evaluación preliminar de síntomas.">
+    <!-- Iconos y Fuentes -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/chat.css">
+</head>
+<body>
+    <p style="padding:12px;text-align:center">Prototipo educativo. Solo casos ficticios; sin validación clínica. Los casos caducan tras una hora.</p>
+    <div class="chat-container">
+        <header class="header">
+            <div class="logo">
+                <i class="fa-solid fa-heart-pulse logo-icon"></i>
+                Medic AI
+            </div>
+            <button id="endSessionBtn" class="btn btn-outline" style="display: none;">
+                <i class="fa-solid fa-check"></i> Finalizar Entrevista
+            </button>
+        </header>
+
+        <div id="demoCases" style="display:flex;flex-wrap:wrap;gap:8px;padding:12px"></div>
+        <main class="chat-box glass-panel">
+            <div id="statusBanner" class="status-banner">Conectando al asistente...</div>
+            <div id="finishBanner" class="finish-banner">
+                <span><i class="fa-solid fa-check-circle"></i> Informe experimental generado en este navegador local.</span>
+                <button id="newSessionBtn" class="btn btn-primary btn-sm">Nueva Consulta</button>
+            </div>
+            
+            <div id="messagesArea" class="messages-area">
+                <!-- Los mensajes se inyectarán aquí -->
+                
+                <div id="typingIndicator" class="typing-indicator">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <textarea id="chatInput" class="chat-input" placeholder="Escribe tu respuesta aquí..." rows="1" disabled></textarea>
+                <button id="sendBtn" class="send-btn" disabled>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/utils.js"></script>
+    <script src="/js/chat.js"></script>
+</body>
+</html>
+
